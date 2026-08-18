@@ -1,1 +1,181 @@
-const WEBAPP_URL =https://script.google.com/macros/s/AKfycbzdlZc2CAC24EgzJLQdQt9v0RQFyKr2SzkCSLhOADGVB3uvMan1ZadBQc_tLpBolduJ/exec
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Encuesta Claro</title>
+
+<style>
+
+body{
+margin:0;
+padding:20px;
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+}
+
+.container{
+max-width:500px;
+margin:auto;
+}
+
+.card{
+background:white;
+border-radius:16px;
+padding:20px;
+box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+
+img{
+width:100%;
+border-radius:12px;
+}
+
+button{
+width:100%;
+padding:15px;
+background:#d60000;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+margin-top:15px;
+cursor:pointer;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-top:10px;
+margin-bottom:15px;
+border:1px solid #ccc;
+border-radius:8px;
+}
+
+.hidden{
+display:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card" id="inicio">
+
+<img src="AIMAGEN
+
+<button onclick="iniciar()">
+COMENZAR ENCUESTA
+</button>
+
+</div>
+
+<div class="card hidden" id="encuesta">
+
+<h2>Encuesta Claro</h2>
+
+<input id="nombre" placeholder="Nombre y apellido">
+
+<input id="telefono" placeholder="Número de contacto">
+
+<label>¿Qué compañía utilizas?</label>
+
+<select id="compania">
+<option value="">Seleccionar</option>
+<option>Claro</option>
+<option>Movistar</option>
+<option>Antel</option>
+</select>
+
+<label>¿Usas contrato o prepago?</label>
+
+<select id="plan">
+<option value="">Seleccionar</option>
+<option>Contrato</option>
+<option>Prepago</option>
+</select>
+
+<label>¿Utilizas roaming?</label>
+
+<select id="roaming">
+<option value="">Seleccionar</option>
+<option>Sí</option>
+<option>No</option>
+</select>
+
+<label>¿Conocés lo que es Portabilidad Numérica?</label>
+
+<select id="portabilidad">
+<option value="">Seleccionar</option>
+<option>Sí</option>
+<option>No</option>
+</select>
+
+<button onclick="enviar()">ENVIAR</button>
+
+</div>
+
+<div class="card hidden" id="gracias">
+
+<h1>¡Gracias por responder! ❤️</h1>
+
+<p>Tus respuestas fueron registradas correctamente.</p>
+
+<h3>📍 Encontranos en:</h3>
+
+<p>18 de julio 1081</p>
+
+</div>
+
+</div>
+
+<script>
+
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzd1Zc2CAC24EgzJLQdQt9v0RQFyKr2SzkCSLhOADGVB3uvMan1ZadBQc_tLpBoldu/exec";
+
+function iniciar(){
+document.getElementById("inicio").classList.add("hidden");
+document.getElementById("encuesta").classList.remove("hidden");
+}
+
+async function enviar(){
+
+const nombre=document.getElementById("nombre").value;
+const telefono=document.getElementById("telefono").value;
+const compania=document.getElementById("compania").value;
+const plan=document.getElementById("plan").value;
+const roaming=document.getElementById("roaming").value;
+const portabilidad=document.getElementById("portabilidad").value;
+
+if(!nombre||!telefono||!compania||!plan||!roaming||!portabilidad){
+alert("Completa todos los campos");
+return;
+}
+
+await fetch(WEBAPP_URL,{
+method:"POST",
+body:JSON.stringify({
+nombre,
+telefono,
+compania,
+plan,
+roaming,
+portabilidad
+})
+});
+
+document.getElementById("encuesta").classList.add("hidden");
+document.getElementById("gracias").classList.remove("hidden");
+
+}
+
+</script>
+
+</body>
+</html>
