@@ -173,36 +173,38 @@ async function enviar(){
 
   try {
 
-    console.log("Voy a enviar datos");
-    
-    await fetch(WEBAPP_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        nombre,
-        telefono,
-        compania,
-        plan,
-        roaming,
-        portabilidad
-      })
-    });
+  console.log("Voy a enviar datos");
 
-    console.log("Datos enviados");
-    
-    document.getElementById('encuesta').classList.add('hidden');
-    document.getElementById('gracias').classList.remove('hidden');
+  await fetch(WEBAPP_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      nombre,
+      telefono,
+      compania,
+      plan,
+      roaming,
+      portabilidad
+    })
+  });
+
+  console.log("Datos enviados");
+
+  document.getElementById('encuesta').classList.add('hidden');
+  document.getElementById('gracias').classList.remove('hidden');
 
 } catch(error) {
- 
-alert("Error al enviar la encuesta");
-console.error(error);
- 
+
+  alert("Error al enviar la encuesta");
+  console.error(error);
+
 }
+
 }
-</script>
+  </script>
  
 </body>
 </html>
+``
