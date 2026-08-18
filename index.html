@@ -173,6 +173,8 @@ async function enviar(){
 
   try {
 
+    console.log("Voy a enviar datos");
+    
     await fetch(WEBAPP_URL, {
       method: "POST",
       headers: {
@@ -188,6 +190,8 @@ async function enviar(){
       })
     });
 
+    console.log("Datos enviados");
+    
     document.getElementById('encuesta').classList.add('hidden');
     document.getElementById('gracias').classList.remove('hidden');
 
