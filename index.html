@@ -159,91 +159,42 @@ document.getElementById('encuesta').classList.remove('hidden');
 
 async function enviar(){
 
-const nombre=document.getElementById('nombre').value;
-const telefono=document.getElementById('telefono').value;
-const compania=document.getElementById('compania').value;
-const plan=document.getElementById('plan').value;
-const roaming=document.getElementById('roaming').value;
-const portabilidad=document.getElementById('portabilidad').value;
+  const nombre=document.getElementById('nombre').value;
+  const telefono=document.getElementById('telefono').value;
+  const compania=document.getElementById('compania').value;
+  const plan=document.getElementById('plan').value;
+  const roaming=document.getElementById('roaming').value;
+  const portabilidad=document.getElementById('portabilidad').value;
 
-if(!nombre||!telefono||!compania||!plan||!roaming||!portabilidad){
-2
-alert("Completa todos los campos");
-3
-return;
-4
+  if(!nombre || !telefono || !compania || !plan || !roaming || !portabilidad){
+    alert("Completa todos los campos");
+    return;
+  }
+
+  try {
+
+    await fetch(WEBAPP_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        nombre,
+        telefono,
+        compania,
+        plan,
+        roaming,
+        portabilidad
+      })
+    });
+
+    document.getElementById('encuesta').classList.add('hidden');
+    document.getElementById('gracias').classList.remove('hidden');
+
+  } catch(error) {
+
+    alert("Error al enviar la encuesta");
+    console.error(error);
+
+  }
 }
-5
- 
-6
-try {
-7
- 
-8
-await fetch(WEBAPP_URL, {
-9
-method: "POST",
-10
-headers: {
-11
-"Content-Type": "application/json"
-12
-},
-13
-body: JSON.stringify({
-14
-nombre,
-15
-telefono,
-16
-compania,
-17
-plan,
-18
-roaming,
-19
-portabilidad
-20
-})
-21
-});
-22
- 
-23
-document.getElementById('encuesta').classList.add('hidden');
-24
-document.getElementById('gracias').classList.remove('hidden');
-25
- 
-26
-} catch(error) {
-27
- 
-28
-alert("Error al enviar la encuesta");
-29
-console.error(error);
-30
- 
-31
-}
-  document.getElementById('encuesta').classList.add('hidden');
-  document.getElementById('gracias').classList.remove('hidden');
-
-} catch(error) {
-
-  alert("Error al enviar la encuesta");
-  console.error(error);
-
-}
-}
-
-document.getElementById('encuesta').classList.add('hidden');
-document.getElementById('gracias').classList.remove('hidden');
-
-}
-
-</script>
-
-</body>
-</html>
